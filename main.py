@@ -1,8 +1,9 @@
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 import random
+import asyncio
 
-TOKEN = "8993675158:AAHZPRxWuN2dwi41hrGxe-KguMeDar0xoTk"
+TOKEN = "8900192006:AAHiAMcv4scRw45R-je3txY1yLstcvVhStY"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
@@ -18,14 +19,19 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     await update.message.reply_text(random.choice(signals))
 
-def main():
+async def run_bot():
     app = Application.builder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("signal", signal))
 
     print("Gold Sniper Bot Started")
-    app.run_polling()
+    await app.initialize()
+    await app.start()
+    await app.updater.start_polling()
+
+    while True:
+        await asyncio.sleep(3600)
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(run_bot())
