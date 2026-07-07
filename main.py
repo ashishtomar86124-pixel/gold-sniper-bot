@@ -1,4 +1,3 @@
-
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 import random
@@ -19,10 +18,14 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     await update.message.reply_text(random.choice(signals))
 
-app = Application.builder().token(TOKEN).build()
+def main():
+    app = Application.builder().token(TOKEN).build()
 
-app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("signal", signal))
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("signal", signal))
 
-print("Gold Sniper Bot Started")
-app.run_polling()
+    print("Gold Sniper Bot Started")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
