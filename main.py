@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 import random
 
-TOKEN = 8673682951:AAFa-tP8yU5nqcKvvxXE13xFxtNiAFvoJbM
+TOKEN = "8673682951:AAFa-tP8yU5nqcKvvxXE13xFxtNiAFvoJbM"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
